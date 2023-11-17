@@ -7,7 +7,7 @@ from .credentials_fields import init_credentials
 
 
 
-def init_auth_by_login(root):
+def init_auth_by_login(root, saved_conf:dict):
 
 
 
@@ -20,15 +20,15 @@ def init_auth_by_login(root):
             token_frame.grid(row=2, column=0, columnspan=2)
 
     frame = Frame(root)
-    auth_by_login = BooleanVar(frame, value=False)
+    auth_by_login = BooleanVar(frame, value=saved_conf.get("auth_by_login", False))
     l = Label(frame, text="Авторизация в NTTM по:")
     login_btn = Radiobutton(frame, text="Логин и пароль", variable=auth_by_login, value=True)
     token_btn = Radiobutton(frame, text="Токену", variable=auth_by_login, value=False)
     l.grid(row=0)
     login_btn.grid(row=1, column=1)
     token_btn.grid(row=1, column=0)
-    credetials_frame, login, passw = init_credentials(frame)
-    token_frame, token_value = init_token_field(frame)
+    credetials_frame, login, passw = init_credentials(frame, saved_conf)
+    token_frame = init_token_field(frame, saved_conf)
     auth_by_login.trace_add("write", toggle_auth)
     toggle_auth()
-    return frame, auth_by_login
+    return frame, {"auth_by_login":auth_by_login ,"login":login, "password":passw}
