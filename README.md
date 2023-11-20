@@ -1,2 +1,2 @@
-# nttm-bot-configurator
-Small desktop utitly for manual nttm-bot config create
+# nttm-bot-lancher
+Small desktop utitly for pre-launch nttm-bot config and then launch it
