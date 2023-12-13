@@ -1,5 +1,4 @@
-from tkinter import Entry, StringVar, Label, Frame
-
+from tkinter import Entry, StringVar, Label, Frame,SOLID
 
 def init_credentials(root, saved_conf:dict):
     frame = Frame(root, pady=5)
